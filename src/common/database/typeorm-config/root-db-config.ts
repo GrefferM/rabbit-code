@@ -1,6 +1,7 @@
 import { TypeOrmModuleAsyncOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
 import { ConfigService } from "../../config";
 import { TypeormNamingStrategy } from "./typeorm-naming-strategy";
+import { UserEntity } from "../entities";
 
 export const rootDbConfig = {
   useFactory: (config: ConfigService) => ({
@@ -16,7 +17,7 @@ export const rootDbConfig = {
         }
       : false,
     synchronize: false,
-    entities: [],
+    entities: [UserEntity],
     namingStrategy: new TypeormNamingStrategy(),
     extra: {
       max: 60,

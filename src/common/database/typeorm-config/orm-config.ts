@@ -1,5 +1,7 @@
 import { DataSource } from "typeorm";
 import { TypeormNamingStrategy } from "./typeorm-naming-strategy";
+import { UserEntity } from "../entities";
+import { AddUser1694789959616 } from "../migrations";
 
 export const dataSource = new DataSource({
   type: "postgres",
@@ -9,8 +11,8 @@ export const dataSource = new DataSource({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   synchronize: false,
-  entities: [],
-  migrations: [],
+  entities: [UserEntity],
+  migrations: [AddUser1694789959616],
   namingStrategy: new TypeormNamingStrategy(),
   ssl:
     process.env.DB_USE_SSL === "true"
