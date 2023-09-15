@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  rabbit-code_core:
+    container_name: "rabbit-code_core"
+    build:
+      context: .
+    command: npm run start:dev
+    volumes:
+      - .:/opt/node_app:delegated
+      - ./package.json:/opt/node_app/package.json
+      - ./package-lock.json:/opt/node_app/package-lock.json
+    environment:
+      - DB_HOST
+      - DB_PORT
+      - DB_USER
+      - DB_PASS
+      - DB_NAME
+      - DB_USE_SSL
+      - DB_SSL_CERTS
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbit-code_psql
+  rabbit-code_psql:
+    container_name: "rabbit-code_psql"
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+
+networks:
+  default:
+    name: rabbit-code_network
+    external: true

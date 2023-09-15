@@ -1,0 +1,15 @@
+dist/*
+coverage/*
+jest.config.js
+test/*
+index.d.ts
+temp/*
+ormconfig.js
+dev.ormconfig.js
+prod.ormconfig.js
+src/database/migration/*
+script/*
+config/*
+worker/*
+docs/*
+tests/*
