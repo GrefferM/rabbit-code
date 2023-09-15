@@ -9,8 +9,10 @@ import { LoggerModule, LoggerMiddleware } from "./common/logger";
 
 import { AppController } from "./app.controller";
 
+import { UserModule } from "./modules/user";
+
 @Module({
-  imports: [LoggerModule, ConfigModule, TypeOrmModule.forRootAsync(rootDbConfig)],
+  imports: [LoggerModule, ConfigModule, TypeOrmModule.forRootAsync(rootDbConfig), UserModule],
   controllers: [AppController],
   providers: [
     {
