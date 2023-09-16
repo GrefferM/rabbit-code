@@ -50,14 +50,9 @@ export class JwtService {
     };
   }
 
-  async signIn(payload: UserEntity): Promise<JwtDto> {
-    if (!payload) {
-      throw new ApplicationException("BAD_REQUEST", "User empty");
-    }
-
-    const user = await this.userService.getUserBy({ email: payload.email });
+  async signIn(user: UserEntity): Promise<JwtDto> {
     if (!user) {
-      throw new ApplicationException("NOT_EXISTS", "User not found");
+      throw new ApplicationException("BAD_REQUEST", "User empty");
     }
 
     const accessToken = await this.jwtService.signAsync(
