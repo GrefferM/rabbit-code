@@ -1,9 +1,9 @@
-import { Injectable, Inject, Logger, forwardRef } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { JwtService as NestJwtService } from "@nestjs/jwt";
 import { ApplicationException } from "../../../common/exceptions";
 import { ConfigService } from "../../../common/config";
 import { UserEntity } from "../../../common/database/entities";
-import { UserService } from "../services";
+import { UserService } from "./user.service";
 import { JwtDto, RefreshTokenDto, RefreshTokenResponseDto } from "../dto";
 
 @Injectable()
@@ -11,7 +11,6 @@ export class JwtService {
   private readonly logger = new Logger(JwtService.name);
 
   constructor(
-    @Inject(forwardRef(() => UserService))
     private readonly userService: UserService,
     private readonly jwtService: NestJwtService,
     private readonly configService: ConfigService,
